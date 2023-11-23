@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+ <item
+     android:id="@+id/ProductID"
+     android:title="Products"
+     android:icon="@drawable/food"
+     android:iconTint="@color/white"/>
+
+    <item
+        android:id="@+id/OffersID"
+        android:title="Orders"
+
+        android:iconTint="@color/white"
+        android:icon="@drawable/order"/>
+
+
+    <item
+        android:id="@+id/SalesMenID"
+        android:title="Categories"
+        android:iconTint="@color/white"
+        android:icon="@drawable/categories"/>
+
+</menu>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009172</color>
+    <color name="colorPrimaryDark">#009172</color>
+    <color name="colorAccent">#009172</color>
+    <color name="skyBlue">#F4E290</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorPurple">#983CFF</color>
+    <color name="colorPurpleT">#64983cff</color>
+    <color name="colorBlue">#2FB4FF</color>
+    <color name="colorBlueT">#642fb4ff</color>
+    <color name="app_color">#009172</color>
+    <color name="green_color">#549F3B</color>
+    <color name="pink_color">#F59FC1</color>
+    <color name="textColor">#FF000000</color>
+    <color name="grey">#5A4B4B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

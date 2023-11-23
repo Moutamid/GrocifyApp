@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    tools:targetApi="lollipop">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+        android:id="@+id/PageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/lexend_extra_bold"
+        android:gravity="left"
+        android:text="Hey Rubik"
+        android:textSize="35dp"
+        android:textColor="#000" />
+
+
+    <ImageView
+        android:id="@+id/search"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="65dp"
+        android:rotation="90"
+        android:visibility="gone"
+        android:src="@drawable/search" />
+
+    <RelativeLayout
+        android:id="@+id/CustomCartIconContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp">
+
+
+        <ImageView
+            android:id="@+id/CustomCartIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/new_cart" />
+
+        <TextView
+            android:id="@+id/CustomCartNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/CustomCartIcon"
+            android:layout_marginLeft="-18dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textColor="#FFF"
+            android:background="@drawable/circular2"
+            android:text=""
+            android:visibility="gone"
+
+            android:textSize="11dp" />
+    </RelativeLayout>
+
+</RelativeLayout>
+
+</Toolbar>

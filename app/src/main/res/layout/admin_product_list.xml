@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/PrContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/btn_bg"
+    android:backgroundTint="#08F44336">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/PrImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+
+        app:cardCornerRadius="10dp">
+
+        <ImageView
+            android:id="@+id/adapterProductImage"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/banner" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/AdapterProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/PrImage"
+        android:fontFamily="@font/lexend_semi_bold"
+        android:text="Salad"
+        android:textColor="#000"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AdapterProductPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AdapterProductName"
+
+        android:layout_toRightOf="@id/PrImage"
+        android:fontFamily="@font/lexend_medium"
+        android:text="200 PKR"
+        android:textColor="#5E5757"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/AdapterProductQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AdapterProductPrice"
+        android:layout_toRightOf="@id/PrImage"
+        android:fontFamily="@font/lexend_medium"
+        android:text=""
+        android:textColor="#5E5757"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/AdapterProductCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AdapterProductQuantity"
+        android:layout_toRightOf="@id/PrImage"
+        android:fontFamily="@font/lexend_medium"
+
+        android:text=""
+        android:textColor="#5E5757"
+        android:textSize="11dp" />
+
+
+    <ImageView
+        android:id="@+id/check_box"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="30dp" />
+</RelativeLayout>

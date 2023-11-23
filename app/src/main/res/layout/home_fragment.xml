@@ -1,0 +1,141 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/main_TooBar"
+    app:layout_constraintVertical_bias="1.0"
+    tools:context=".UI.MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/ScrolViewID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/main_TooBar"
+            layout="@layout/main2_toolbar"
+            android:visibility="invisible"/>
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+android:layout_marginTop="20dp"            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar_"
+                    android:elevation="5dp"
+
+                    >
+
+                    <EditText
+                        android:id="@+id/search_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginLeft="23dp"
+                        android:layout_marginTop="13dp"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginEnd="23dp"
+                        android:elevation="2dp"
+                        android:layout_marginRight="23dp"
+                        android:layout_marginBottom="23dp"
+                        android:background="@drawable/edit_bg"
+                        android:drawableStart="@drawable/search_bar"
+                        android:fontFamily="@font/calibri"
+                        android:hint="  Search by products/ category name"
+                        android:paddingLeft="15dp"
+
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="13dp" />
+
+                    <ImageView
+                        android:id="@+id/mic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginStart="37dp"
+                        android:layout_marginTop="37dp"
+                        android:layout_marginEnd="37dp"
+                        android:visibility="gone"
+                        android:layout_marginRight="37dp"
+                        android:layout_marginBottom="37dp"
+                        android:src="@drawable/baseline_mic_24" />
+                </RelativeLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="3dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/MainProductID"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent">
+
+
+                        <ImageView
+                            android:id="@+id/item_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/banner"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/PageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:gravity="left"
+                    android:text="All Products"
+                    android:textSize="18dp"
+                    android:textColor="#000" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/product_layout_gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                  android:layout_margin="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grid_button_layout_viewall_button" />
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
