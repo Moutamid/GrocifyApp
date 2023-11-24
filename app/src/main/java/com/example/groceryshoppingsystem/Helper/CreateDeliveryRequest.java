@@ -1,4 +1,5 @@
 package com.example.groceryshoppingsystem.Helper;
+
 import com.google.gson.annotations.SerializedName;
 
 public class CreateDeliveryRequest {
@@ -17,6 +18,9 @@ public class CreateDeliveryRequest {
     @SerializedName("pickup_instructions")
     private String pickupInstructions;
 
+    @SerializedName("pickup_reference_tag")
+    private String pickupReferenceTag;
+
     @SerializedName("dropoff_address")
     private String dropoffAddress;
 
@@ -31,6 +35,9 @@ public class CreateDeliveryRequest {
 
     @SerializedName("dropoff_contact_given_name")
     private String dropoffContactGivenName;
+
+    @SerializedName("dropoff_contact_family_name")
+    private String dropoffContactFamilyName;
 
     @SerializedName("dropoff_contact_send_notifications")
     private boolean dropoffContactSendNotifications;
@@ -53,14 +60,13 @@ public class CreateDeliveryRequest {
     @SerializedName("action_if_undeliverable")
     private String actionIfUndeliverable;
 
-    // Add other fields as needed
-
     // Constructor
 
     public CreateDeliveryRequest(String externalDeliveryId, String pickupAddress, String pickupBusinessName,
-                                 String pickupPhoneNumber, String pickupInstructions, String dropoffAddress,
-                                 String dropoffBusinessName, String dropoffPhoneNumber, String dropoffInstructions,
-                                 String dropoffContactGivenName, boolean dropoffContactSendNotifications,
+                                 String pickupPhoneNumber, String pickupInstructions, String pickupReferenceTag,
+                                 String dropoffAddress, String dropoffBusinessName, String dropoffPhoneNumber,
+                                 String dropoffInstructions, String dropoffContactGivenName,
+                                 String dropoffContactFamilyName, boolean dropoffContactSendNotifications,
                                  String schedulingModel, int orderValue, int tip, String currency,
                                  boolean contactlessDropoff, String actionIfUndeliverable) {
         this.externalDeliveryId = externalDeliveryId;
@@ -68,11 +74,13 @@ public class CreateDeliveryRequest {
         this.pickupBusinessName = pickupBusinessName;
         this.pickupPhoneNumber = pickupPhoneNumber;
         this.pickupInstructions = pickupInstructions;
+        this.pickupReferenceTag = pickupReferenceTag;
         this.dropoffAddress = dropoffAddress;
         this.dropoffBusinessName = dropoffBusinessName;
         this.dropoffPhoneNumber = dropoffPhoneNumber;
         this.dropoffInstructions = dropoffInstructions;
         this.dropoffContactGivenName = dropoffContactGivenName;
+        this.dropoffContactFamilyName = dropoffContactFamilyName;
         this.dropoffContactSendNotifications = dropoffContactSendNotifications;
         this.schedulingModel = schedulingModel;
         this.orderValue = orderValue;
@@ -105,6 +113,10 @@ public class CreateDeliveryRequest {
         return pickupInstructions;
     }
 
+    public String getPickupReferenceTag() {
+        return pickupReferenceTag;
+    }
+
     public String getDropoffAddress() {
         return dropoffAddress;
     }
@@ -123,6 +135,10 @@ public class CreateDeliveryRequest {
 
     public String getDropoffContactGivenName() {
         return dropoffContactGivenName;
+    }
+
+    public String getDropoffContactFamilyName() {
+        return dropoffContactFamilyName;
     }
 
     public boolean isDropoffContactSendNotifications() {
@@ -153,6 +169,8 @@ public class CreateDeliveryRequest {
         return actionIfUndeliverable;
     }
 
+    // Add setters for all fields
+
     public void setExternalDeliveryId(String externalDeliveryId) {
         this.externalDeliveryId = externalDeliveryId;
     }
@@ -171,6 +189,10 @@ public class CreateDeliveryRequest {
 
     public void setPickupInstructions(String pickupInstructions) {
         this.pickupInstructions = pickupInstructions;
+    }
+
+    public void setPickupReferenceTag(String pickupReferenceTag) {
+        this.pickupReferenceTag = pickupReferenceTag;
     }
 
     public void setDropoffAddress(String dropoffAddress) {
@@ -193,6 +215,10 @@ public class CreateDeliveryRequest {
         this.dropoffContactGivenName = dropoffContactGivenName;
     }
 
+    public void setDropoffContactFamilyName(String dropoffContactFamilyName) {
+        this.dropoffContactFamilyName = dropoffContactFamilyName;
+    }
+
     public void setDropoffContactSendNotifications(boolean dropoffContactSendNotifications) {
         this.dropoffContactSendNotifications = dropoffContactSendNotifications;
     }
@@ -205,21 +231,4 @@ public class CreateDeliveryRequest {
         this.orderValue = orderValue;
     }
 
-    public void setTip(int tip) {
-        this.tip = tip;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public void setContactlessDropoff(boolean contactlessDropoff) {
-        this.contactlessDropoff = contactlessDropoff;
-    }
-
-    public void setActionIfUndeliverable(String actionIfUndeliverable) {
-        this.actionIfUndeliverable = actionIfUndeliverable;
-    }
-
-    // Add getters for other fields as needed
 }

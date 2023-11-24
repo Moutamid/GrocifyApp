@@ -11,7 +11,8 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 public class Config {
-
+public static  String SERVER_KEY="AAAAwcSm14E:APA91bHUNOpuqntl1K2H7QO23EwFhO8-UBLgucbZyRzcwe8eDotRnq5a5TCM96GDrqSYMEQugF0FiY8MYc_aAv2EfxEzefX13bqF-JwLELlQiz_gYpmWlJxHWRK1RHipe4uyihTvbRw4";
+public static  String NOTIFICATIONAPIURL="https://fcm.googleapis.com/fcm/send";
     public static String getJWT() {
         Map<String, Object> claims = new HashMap<>();
         claims.put("iss", "ebb483b2-d06b-453e-b596-715559490bb4");

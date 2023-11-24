@@ -221,7 +221,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
+android:visibility="gone"
                 app:bt_colorActive="@color/app_color"
                 app:bt_colorInactive="#786D6D"
                 app:bt_icon="@drawable/favrt"

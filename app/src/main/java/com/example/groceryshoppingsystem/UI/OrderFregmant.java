@@ -79,18 +79,19 @@ public class OrderFregmant extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        String Date = dataSnapshot.child("Date").getValue().toString();
-                        int nums = ((int)(dataSnapshot.child("orderproducts").getChildrenCount()));
-                        String totalPrice = dataSnapshot.child("totalPrice").getValue().toString();
-                        String OrderCheck = dataSnapshot.child("IsChecked").getValue().toString();
+                        if (dataSnapshot.hasChild("status")) {
+                            String Date = dataSnapshot.child("Date").getValue().toString();
+                            int nums = ((int) (dataSnapshot.child("orderproducts").getChildrenCount()));
+                            String totalPrice = dataSnapshot.child("totalPrice").getValue().toString();
+                            String OrderCheck = dataSnapshot.child("IsChecked").getValue().toString();
+                            String status = dataSnapshot.child("status").getValue().toString();
+                            String products = "";
+                            for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
+                                products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " PKR\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
+                            }
 
-                        String products="Ordered items\n";
-                        for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren())
-                        {
-                            products+= "        "+data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " PKR\n                Quantity: " + data.child("quantity").getValue().toString()+"\n";
+                            orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums),  totalPrice + " PKR", "   " + products, OrderCheck, status));
                         }
-
-                        orderItemList.add( new MyorderModel(dataSnapshot.getKey(),""+ Date ,"   Number of items:                               "+String.valueOf(nums),"   Total Price :                                "+ totalPrice+" PKR" , "   "+products,OrderCheck));
                     }
                 }
                 else{

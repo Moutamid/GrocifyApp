@@ -5,12 +5,14 @@
     android:layout_height="wrap_content"
     android:background="@drawable/btn_bg"
     app:cardCornerRadius="6dp"
-    app:cardElevation="2dp" android:layout_margin="10dp">
+    android:layout_margin="15dp"
+    app:cardElevation="2dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        >
+        android:layout_margin="10dp">
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -19,7 +21,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/lexend_semi_bold"
-            android:text="  Order No:"
+            android:text="Order No:"
             android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:layout_toRightOf="@+id/textView1"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/lexend_medium"
             android:text="Order No"
             android:textColor="#5C5959"
@@ -57,61 +59,272 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <TextView
-            android:id="@+id/orderNums"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/orderProducts_"
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="-4dp"
-            android:text="Number of Products :"
-            android:layout_below="@+id/orderProducts_"
-            android:fontFamily="@font/lexend_medium"
-            android:textColor="#000"
-            android:textSize="14sp"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            app:layout_constraintTop_toBottomOf="@+id/orderDate">
 
-        <TextView
-            android:id="@+id/orderPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:text="Total Price"
-            android:layout_below="@+id/orderNums"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            android:fontFamily="@font/lexend_medium"
-            android:textColor="#000"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orderNums" />
-<LinearLayout
-    android:id="@+id/orderProducts_"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Name"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_below="@+id/textView2"
+                <TextView
+                    android:id="@+id/orderName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
+                    android:gravity="end"
+                    android:text="Number of Products :"
+                    android:textColor="#474343"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            </LinearLayout>
 
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/orderPrice"
->
-        <TextView
-            android:id="@+id/orderProducts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            android:text="Products :"
-            android:fontFamily="@font/lexend_medium"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-           />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Phone Number"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+
+                <TextView
+                    android:id="@+id/orderPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
+                    android:gravity="end"
+                    android:text="Number of Products :"
+                    android:textColor="#474343"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Email"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+
+                <TextView
+                    android:id="@+id/orderEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
+                    android:gravity="end"
+                    android:text="Number of Products :"
+                    android:textColor="#474343"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Address"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+
+                <TextView
+                    android:id="@+id/orderAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
+                    android:gravity="end"
+                    android:text="Number of Products :"
+                    android:textColor="#474343"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Ordered items"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+
+                <TextView
+                    android:id="@+id/orderProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
+                    android:text="Number of Products :"
+                    android:textColor="#474343"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Number of Products :"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+
+                <TextView
+                    android:id="@+id/orderNums"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
+                    android:gravity="end"
+                    android:text="Number of Products :"
+                    android:textColor="#474343"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Price"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+
+                <TextView
+                    android:id="@+id/orderPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderProducts_"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_light"
+                    android:gravity="end"
+                    android:text="Number of Products :"
+                    android:textColor="#474343"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderDate" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <RelativeLayout
@@ -124,13 +337,16 @@
 
             <TextView
                 android:id="@+id/OrderCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_bg"
+
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="5dp"
+                android:gravity="center"
                 android:fontFamily="@font/lexend_medium"
-                android:text="Order: Pending"
-                android:textColor="#000"
+                android:text="Order Confirm"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 
             <Button

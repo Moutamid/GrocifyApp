@@ -95,11 +95,11 @@ Context context;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,ProductInfoActivity.class);
+                Intent intent = new Intent(context ,ProductInfoActivity.class);
                 intent.putExtra("Product Name",horizontalProductModel.getProducttitle());
                 intent.putExtra("Product Price",horizontalProductModel.getProductprice());
                 intent.putExtra("Product Image",horizontalProductModel.getProductimage());
-                intent.putExtra("Product ExpiryDate","horizontalProductModel");
+                intent.putExtra("Product ExpiryDate",horizontalProductModel.getProductDetails());
                 intent.putExtra("Product IsFavorite",String.valueOf(horizontalProductModel.isChecked()));
                 intent.putExtra("Is Offered","no");
 

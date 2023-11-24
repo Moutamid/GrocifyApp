@@ -11,20 +11,31 @@
     <RelativeLayout
         android:id="@+id/PBody"
         android:layout_width="match_parent"
+        android:background="@color/white"
+
         android:layout_height="match_parent">
 
         <include
             android:id="@+id/ProductToolBar"
             layout="@layout/main2_toolbar"
             android:visibility="gone" />
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="17dp"
+            android:onClick="backPress"
+            android:layout_marginTop="29dp"
+
+            android:src="@drawable/baseline_arrow_back_ios_new_24" />
+
 
         <TextView
             android:id="@+id/PageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="57dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/lexend_semi_bold"
+            android:fontFamily="@font/lexend_extra_bold"
             android:gravity="left"
             android:text="Product Info"
             android:textColor="#000"
@@ -34,12 +45,16 @@
             android:id="@+id/ProductFav"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:visibility="gone"
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             android:layout_alignParentRight="true" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+
             android:layout_below="@id/ProductToolBar"
             android:layout_marginTop="70dp">
 
@@ -52,7 +67,7 @@
                     android:id="@+id/ImageContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#F8F5F5">
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/ProductImage"
@@ -61,6 +76,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="80dp"
                         android:layout_marginTop="17dp"
+                        android:src="@drawable/defualt_image"
                         android:layout_marginRight="80dp"
                         android:background="#FFF"
                         android:scaleType="fitXY" />
@@ -94,105 +110,115 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:fontFamily="@font/lexend_extra_bold"
-                    android:paddingLeft="17dp"
-                    android:paddingTop="17dp"
                     android:text="Apple"
+                    android:gravity="center"
                     android:textColor="#000"
                     android:textSize="26dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_semi_bold"
+                        android:text="Category"
+                        android:layout_weight="1"
+                        android:textColor="#000"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/ProductCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_light"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="17dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_semi_bold"
+                        android:text="Price"
+                        android:layout_weight="1"
+                        android:textColor="#000"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/CurrentProductPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_light"
+                        android:text=""
+                        android:layout_weight="2"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="17dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lexend_semi_bold"
+                        android:layout_weight="1"
+                        android:text="Available Amount"
+                        android:textColor="#000"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/ProductAvailableAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/lexend_light"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="17dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:text="Product Description"
+                    android:textColor="#000"
+                    android:textSize="17dp" />
 
                 <TextView
                     android:id="@+id/details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="17dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="17dp"
                     android:fontFamily="@font/lexend_light"
                     android:lineSpacingExtra="3dp"
                     android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
                     android:textColor="#000"
                     android:textSize="13dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_margin="10dp"
-                        android:fontFamily="@font/lexend_semi_bold"
-                        android:text="Category"
-                        android:textColor="#000"
-                        android:textSize="17dp" />
-
-                    <TextView
-                        android:id="@+id/ProductCategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_margin="10dp"
-                        android:fontFamily="@font/lexend_light"
-                        android:text=""
-                        android:textColor="#000"
-                        android:textSize="13dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_margin="10dp"
-                        android:fontFamily="@font/lexend_semi_bold"
-                        android:text="Price"
-                        android:textColor="#000"
-                        android:textSize="17dp" />
-
-                    <TextView
-                        android:id="@+id/CurrentProductPrice"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_margin="10dp"
-                        android:fontFamily="@font/lexend_light"
-                        android:text=""
-                        android:textColor="#000"
-                        android:textSize="13dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_margin="10dp"
-                        android:fontFamily="@font/lexend_semi_bold"
-                        android:text="Available Amount"
-                        android:textColor="#000"
-                        android:textSize="17dp" />
-
-                    <TextView
-                        android:id="@+id/ProductAvailableAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_margin="10dp"
-                        android:fontFamily="@font/lexend_light"
-                        android:text=""
-                        android:textColor="#000"
-                        android:textSize="13dp" />
-
-                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"

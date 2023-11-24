@@ -164,4 +164,7 @@ public class CartActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void backPress(View view) {
+        onBackPressed();
+    }
 }

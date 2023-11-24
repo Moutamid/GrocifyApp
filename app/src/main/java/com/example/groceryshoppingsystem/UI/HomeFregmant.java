@@ -83,7 +83,6 @@ public class HomeFregmant extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot categorySnapshot : dataSnapshot.getChildren()) {
                     for (DataSnapshot ds : categorySnapshot.getChildren()) {
-
                         user my_user = new user();
                         my_user = ds.getValue(user.class);
                         my_user.setCategory(ds.getKey().toString());

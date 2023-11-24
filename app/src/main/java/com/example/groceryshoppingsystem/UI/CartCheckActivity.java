@@ -21,8 +21,9 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.groceryshoppingsystem.Helper.Config;
 import com.example.groceryshoppingsystem.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,6 +73,7 @@ public class CartCheckActivity extends AppCompatActivity {
         totalPrice2 = findViewById(R.id.TotalAmount);
         savedamount = findViewById(R.id.SavedAmount);
         getUserProfileData();
+        editTextProvince.setVisibility(View.GONE);
 
         Done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,36 +127,52 @@ public class CartCheckActivity extends AppCompatActivity {
     }
 
     private void savedDate() {
-        root = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp");
-        FirebaseAuth mAuth;
-        mAuth = FirebaseAuth.getInstance();
-        CurrentUser = mAuth.getCurrentUser().getUid();
-        DatabaseReference x = root.child("cart").child(CurrentUser);
-        x.addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FirebaseDatabase t = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/");
-                String key = t.getReference("order").push().getKey();
-                root.child("order").child(CurrentUser).child(key).child("name").setValue(UserName.getText().toString());
-                root.child("order").child(CurrentUser).child(key).child("phonenumber").setValue(UserPhone.getText().toString());
-                root.child("order").child(CurrentUser).child(key).child("email").setValue(UserEmail.getText().toString());
-                root.child("order").child(CurrentUser).child(key).child("address").setValue(editTextAddress.getText().toString());
-                root.child("order").child(CurrentUser).child(key).child("province").setValue(editTextProvince.getText().toString());
-                root.child("order").child(CurrentUser).child(key).child("comments").setValue(editTextComments.getText().toString());
-                root.child("order").child(CurrentUser).child(key).child("orderproducts").setValue(snapshot.getValue());
-                root.child("order").child(CurrentUser).child(key).child("totalPrice").setValue(snapshot.child("totalPrice").getValue());
-                root.child("order").child(CurrentUser).child(key).child("orderproducts").child("totalPrice").removeValue();
-                root.child("order").child(CurrentUser).child(key).child("Date").setValue(String.valueOf(new SimpleDateFormat("dd MMM yyyy hh:mm a").format(Calendar.getInstance().getTime())));
-                root.child("order").child(CurrentUser).child(key).child("IsChecked").setValue("false");
-                Toast.makeText(getApplicationContext(), "Confermed Completed", Toast.LENGTH_LONG).show();
-                root.child("cart").child(CurrentUser).removeValue();
-            }
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()) {
+                    Log.w("TAG", "Fetching FCM registration token failed", task.getException());
+                    return;
+                }
+                String token = task.getResult();
+                Log.d("TAG", "FCM Token: " + token);
+                root = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp");
+                FirebaseAuth mAuth;
+                mAuth = FirebaseAuth.getInstance();
+                CurrentUser = mAuth.getCurrentUser().getUid();
+                DatabaseReference x = root.child("cart").child(CurrentUser);
+                x.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        FirebaseDatabase t = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/");
+                        String key = t.getReference("order").push().getKey();
+                        assert key != null;
+                        root.child("order").child(CurrentUser).child(key).child("name").setValue(UserName.getText().toString());
+                        root.child("order").child(CurrentUser).child(key).child("phonenumber").setValue(UserPhone.getText().toString());
+                        root.child("order").child(CurrentUser).child(key).child("email").setValue(UserEmail.getText().toString());
+                        root.child("order").child(CurrentUser).child(key).child("address").setValue(editTextAddress.getText().toString());
+                        root.child("order").child(CurrentUser).child(key).child("comments").setValue(editTextComments.getText().toString());
+                        root.child("order").child(CurrentUser).child(key).child("orderproducts").setValue(snapshot.getValue());
+                        root.child("order").child(CurrentUser).child(key).child("totalPrice").setValue(snapshot.child("totalPrice").getValue());
+                        root.child("order").child(CurrentUser).child(key).child("orderproducts").child("totalPrice").removeValue();
+                        root.child("order").child(CurrentUser).child(key).child("Date").setValue(String.valueOf(new SimpleDateFormat("dd MMM yyyy hh:mm a").format(Calendar.getInstance().getTime())));
+                        root.child("order").child(CurrentUser).child(key).child("IsChecked").setValue("false");
+                        root.child("order").child(CurrentUser).child(key).child("status").setValue("pending");
+                        root.child("order").child(CurrentUser).child(key).child("token").setValue(token);
+                        root.child("order").child(CurrentUser).child(key).child("uid").setValue(CurrentUser);
+                        root.child("order").child(CurrentUser).child(key).child("key").setValue(key);
+                        Toast.makeText(getApplicationContext(), "Order is successfully placed", Toast.LENGTH_LONG).show();
+                        root.child("cart").child(CurrentUser).removeValue();
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
             }
         });
+
     }
 
     private static JSONObject createDeliveryRequestData() {
@@ -256,5 +275,9 @@ public class CartCheckActivity extends AppCompatActivity {
         m.addListenerForSingleValueEvent(valueEventListener);
     }
 
+
+    public void backPress(View view) {
+        onBackPressed();
+    }
 
 }

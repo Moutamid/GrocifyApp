@@ -1,7 +1,6 @@
 package com.example.groceryshoppingsystem.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,15 +57,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.orderNums.setText(model.getOrderNums());
         holder.orderPrice.setText(model.getOrderPrice());
         holder.orderProducts.setText(model.getOrderProducts());
-
-        if (model.getOrderCheck().equalsIgnoreCase("false")) {
-            holder.OrderCheck.setText("   Order:                                        Pending");
-            holder.ScanQrCode.setVisibility(View.GONE);
-        } else {
-            holder.OrderCheck.setText("   Order:                                        Received");
-            holder.ScanQrCode.setVisibility(View.GONE);
-        }
-
+        holder.OrderCheck.setText(model.getStatus());
 
     }
 

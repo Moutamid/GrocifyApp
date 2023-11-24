@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.groceryshoppingsystem.Adapters.OrderAdapter;
+import com.example.groceryshoppingsystem.Adapters.AdminOrderAdapter;
 import com.example.groceryshoppingsystem.Model.MyorderModel;
 import com.example.groceryshoppingsystem.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class OrderDetailsFregmant extends Fragment {
+public class OrderPendingFregmant extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -32,20 +32,20 @@ public class OrderDetailsFregmant extends Fragment {
     private String mParam2;
 
     ArrayList<MyorderModel> orderItemList;
-    OrderAdapter adapter;
+    AdminOrderAdapter adapter;
     private FirebaseAuth mAuth;
     private String CurrentUser;
     private DatabaseReference m, root;
     public static Activity fa;
 
-    public OrderDetailsFregmant() {
+    public OrderPendingFregmant() {
         // Required empty public constructor
     }
 
     private RecyclerView OrderItemRecyclerView;
 
-    public static OrderDetailsFregmant newInstance(String param1, String param2) {
-        OrderDetailsFregmant fragment = new OrderDetailsFregmant();
+    public static OrderPendingFregmant newInstance(String param1, String param2) {
+        OrderPendingFregmant fragment = new OrderPendingFregmant();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,36 +70,44 @@ public class OrderDetailsFregmant extends Fragment {
         fa = getActivity();
         mAuth = FirebaseAuth.getInstance();
         CurrentUser = mAuth.getCurrentUser().getUid();
-
         OrderItemRecyclerView = view.findViewById(R.id.orderrecycler);
         orderItemList = new ArrayList<MyorderModel>();
-        adapter = new OrderAdapter(getActivity(), orderItemList);
-
+        adapter = new AdminOrderAdapter(getActivity(), orderItemList);
         OrderItemRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         OrderItemRecyclerView.setAdapter(adapter);
-
         DatabaseReference roott = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp");
         DatabaseReference x = roott.child("order");
         ValueEventListener valueEventListener1 = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+                    orderItemList.clear();
+
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                         for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
+                            Log.d("datasnap", dataSnapshot + " ");
 
-                            if (dataSnapshot.child("status").getValue().toString().equals("pending")) {
-                            Log.d("datasnap", dataSnapshot+" ");
-                                String Date = dataSnapshot.child("Date").getValue().toString();
-                                int nums = ((int) (dataSnapshot.child("orderproducts").getChildrenCount()));
-                                String totalPrice = dataSnapshot.child("totalPrice").getValue().toString();
-                                String OrderCheck = dataSnapshot.child("IsChecked").getValue().toString();
-
-                                String products = "Ordered items\n";
-                                for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
-                                    products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " PKR\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
+                            if (dataSnapshot.hasChild("status")&&dataSnapshot.hasChild("token")&&dataSnapshot.hasChild("uid")) {
+                                if (dataSnapshot.child("status").getValue().toString().equals("pending")) {
+                                    Log.d("datasnap", dataSnapshot + " ");
+                                    String Date = dataSnapshot.child("Date").getValue().toString();
+                                    int nums = ((int) (dataSnapshot.child("orderproducts").getChildrenCount()));
+                                    String totalPrice = dataSnapshot.child("totalPrice").getValue().toString();
+                                    String OrderCheck = dataSnapshot.child("IsChecked").getValue().toString();
+                                    String phonenumber = dataSnapshot.child("phonenumber").getValue().toString();
+                                    String address = dataSnapshot.child("address").getValue().toString();
+                                    String email = dataSnapshot.child("email").getValue().toString();
+                                    String name = dataSnapshot.child("name").getValue().toString();
+                                    String token = dataSnapshot.child("token").getValue().toString();
+                                    String key = dataSnapshot.child("key").getValue().toString();
+                                    String uid = dataSnapshot.child("uid").getValue().toString();
+//                                    String token="aba";
+                                    String products = "";
+                                    for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
+                                        products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " PKR\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
+                                    }
+                                    orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums), totalPrice + " PKR", "   " + products, OrderCheck, address, email, phonenumber, name, token, uid, key, 1));
                                 }
-
-                                orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, "   Number of items:                               " + String.valueOf(nums), "   Total Price :                                " + totalPrice + " PKR", "   " + products, OrderCheck));
                             }
                         }
                     }

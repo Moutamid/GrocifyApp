@@ -16,18 +16,30 @@
         android:id="@+id/cartToolbar"
         android:visibility="gone"/>
 
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="17dp"
+            android:onClick="backPress"
+            android:layout_marginTop="29dp"
+
+            android:src="@drawable/baseline_arrow_back_ios_new_24" />
+
+
         <TextView
+            android:id="@+id/PageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
+            android:layout_marginLeft="57dp"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/lexend_semi_bold"
+            android:fontFamily="@font/lexend_extra_bold"
             android:gravity="left"
             android:text="My Cart"
             android:textColor="#000"
             android:textSize="30dp" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/cartToolbar">

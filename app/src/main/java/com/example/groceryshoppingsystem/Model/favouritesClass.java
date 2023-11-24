@@ -39,6 +39,15 @@ public class favouritesClass {
 
     private String producttitle;
     private String productprice;
+    private String productDetails;
+
+    public String getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(String productDetails) {
+        this.productDetails = productDetails;
+    }
 
     public boolean isChecked() {
         return checked;

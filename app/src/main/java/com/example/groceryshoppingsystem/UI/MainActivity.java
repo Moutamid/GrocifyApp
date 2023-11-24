@@ -1,32 +1,21 @@
 package com.example.groceryshoppingsystem.UI;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.groceryshoppingsystem.Adapters.GridproductAdapter;
 import com.example.groceryshoppingsystem.Adapters.My_Adapter;
 import com.example.groceryshoppingsystem.Helper.Config;
 import com.example.groceryshoppingsystem.Helper.CreateDeliveryRequest;
 import com.example.groceryshoppingsystem.Helper.DoorDashService;
-import com.example.groceryshoppingsystem.Model.HorizontalProductModel;
 import com.example.groceryshoppingsystem.Model.favouritesClass;
 import com.example.groceryshoppingsystem.Model.model;
-import com.example.groceryshoppingsystem.Model.user;
 import com.example.groceryshoppingsystem.R;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
@@ -37,15 +26,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -87,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         CurrentUser = mAuth.getCurrentUser();
         Uid = CurrentUser.getUid();
         getSupportFragmentManager().beginTransaction().replace(R.id.Orderframe, new HomeFregmant()).commit();
+        System.setProperty("javax.net.debug", "all");
         top_navigation_constraint.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override
             public void onNavigationChanged(View view, int position) {
@@ -195,28 +188,50 @@ public class MainActivity extends AppCompatActivity {
         CustomCartContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String externalDeliveryId = "79233";
+                String pickupAddress = "600 4th Ave, Seattle, WA 98101";
+                String pickupBusinessName = "Seattle City Hall";
+                String pickupPhoneNumber = "+12065551212";
+                String pickupInstructions = "Knock on the front door";
+                String pickupReferenceTag = "Order for the Sounders Mascot";
+                String dropoffAddress = "800 Occidental Ave S, Seattle, WA 98134";
+                String dropoffBusinessName = "Lumen Field";
+                String dropoffPhoneNumber = "+12065551212";
+                String dropoffInstructions = "Enter gate code 1234 on the callbox.";
+                String dropoffContactGivenName = "Sammy the";
+                String dropoffContactFamilyName = "Sounder";
+                boolean dropoffContactSendNotifications = true;
+                String schedulingModel = "asap";
+                int orderValue = 1999;
+                int tip = 599;
+                String currency = "USD";
+                boolean contactlessDropoff = false;
+                String actionIfUndeliverable = "return_to_pickup";
+
 //                TODO API work with retofit
-//                CreateDeliveryRequest createDeliveryRequest = new CreateDeliveryRequest(
-//                        "123",                              // external_delivery_id
-//                        "123 Main St",                       // pickup_address
-//                        "Business Name",                     // pickup_business_name
-//                        "+12065551212",                      // pickup_phone_number
-//                        "Knock on the front door",           // pickup_instructions
-//                        "1600 Amphitheatre Parkway",         // dropoff_address
-//                        "Lumen Field",                       // dropoff_business_name
-//                        "+12065551212",                      // dropoff_phone_number
-//                        "Enter gate code 1234 on the callbox.", // dropoff_instructions
-//                        "Sammy the",                         // dropoff_contact_given_name
-//                        true,                                // dropoff_contact_send_notifications
-//                        "asap",                              // scheduling_model
-//                        1999,                                // order_value
-//                        0,                                   // tip
-//                        "USD",                               // currency
-//                        false,                               // contactless_dropoff
-//                        "return_to_pickup"                   // action_if_undeliverable
-//                );
-//                createDelivery(Config.getJWT(), createDeliveryRequest);
-                startActivity(new Intent(MainActivity.this, CartActivity.class));
+                // Create the CreateDeliveryRequest object
+                CreateDeliveryRequest createDeliveryRequest = new CreateDeliveryRequest(
+                        externalDeliveryId,
+                        pickupAddress,
+                        pickupBusinessName,
+                        pickupPhoneNumber,
+                        pickupInstructions,
+                        pickupReferenceTag,
+                        dropoffAddress,
+                        dropoffBusinessName,
+                        dropoffPhoneNumber,
+                        dropoffInstructions,
+                        dropoffContactGivenName,
+                        dropoffContactFamilyName,
+                        dropoffContactSendNotifications,
+                        schedulingModel,
+                        orderValue,
+                        tip,
+                        currency,
+                        contactlessDropoff,
+                        actionIfUndeliverable
+                );                createDelivery(Config.getJWT(), createDeliveryRequest);
+//                startActivity(new Intent(MainActivity.this, CartActivity.class));
             }
         });
     }
@@ -225,9 +240,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static DoorDashService createService() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS) // Connection timeout
-            .readTimeout(30, TimeUnit.SECONDS)    // Read timeout
-            .build();
+                .connectTimeout(50, TimeUnit.SECONDS) // Connection timeout
+                .readTimeout(50, TimeUnit.SECONDS)    // Read timeout
+                .build();
 
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -238,27 +253,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createDelivery(String jwt, CreateDeliveryRequest request) {
+        Log.d("Response Body", jwt+"");
+
         DoorDashService doorDashService = createService();
 
-        Call<Void> call = doorDashService.createDelivery("Bearer " + jwt, request);
+        Call<Void> call = doorDashService.createDelivery(("Bearer "+ jwt), request);
         call.enqueue(new Callback<Void>() {
 
             @Override
-            public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "successfull" + response.code(), Toast.LENGTH_SHORT).show();
-                    System.out.println("Delivery created successfully!");
+                    DoorDashApiResponse apiResponse = new Gson().fromJson(response.body().toString(), DoorDashApiResponse.class);
+                    String externalDeliveryId = apiResponse.getDeliveryStatus();
+                    Log.e("Error Response Body", "id"+ externalDeliveryId);
+//
                 } else {
-                    Toast.makeText(MainActivity.this, "error" + response.code(), Toast.LENGTH_SHORT).show();
-                    System.out.println("Error: " + response.code());
+                    try {
+                        String errorBodyString = response.errorBody().string();
+                        Log.e("Error Response Body", errorBodyString);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
-                Toast.makeText(MainActivity.this,"Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                System.out.println("Network error: " + t.getMessage());
+                Log.d("Error Response Body", "Network error" + "    " + t.toString() + "  " + t.getMessage() + "   " + t.getCause() + "   " + t.getLocalizedMessage());
+//                Toast.makeText(MainActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//                System.out.println("Response" + t.getMessage());
             }
         });
     }

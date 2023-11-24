@@ -1,8 +1,6 @@
 package com.example.groceryshoppingsystem.UI;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.groceryshoppingsystem.R;
@@ -55,6 +52,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         CurrentUser = mAuth.getCurrentUser();
         UserId = CurrentUser.getUid();
+
 
         //toolbar
 //        mToolbar =(Toolbar)findViewById(R.id.ProductToolBar);
@@ -141,6 +139,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                     x.child("productimage").setValue(ProductImage);
                     x.child("productprice").setValue("" + ProductPrice + " PKR");
                     x.child("producttitle").setValue(ProductName);
+                    x.child("productDetails").setValue(details.getText().toString());
 
                 }
             }
@@ -350,4 +349,8 @@ public class ProductInfoActivity extends AppCompatActivity {
 
     }
 
+    public void backPress(View view) {
+        onBackPressed();
+
+    }
 }
