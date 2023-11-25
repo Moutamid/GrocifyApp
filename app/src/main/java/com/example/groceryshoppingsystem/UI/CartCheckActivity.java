@@ -21,6 +21,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.groceryshoppingsystem.Helper.Config;
 import com.example.groceryshoppingsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -81,11 +82,11 @@ public class CartCheckActivity extends AppCompatActivity {
                 JSONObject deliveryData = createDeliveryRequestData();
 
                 // Create HTTP request
-//                sendDeliveryRequest(CartCheckActivity.this, Config.getJWT(), deliveryData);
+                sendDeliveryRequest(CartCheckActivity.this, Config.getJWT(), deliveryData);
 
-                savedDate();
-                CartActivity.fa.finish();
-                finish();
+//                savedDate();
+//                CartActivity.fa.finish();
+//                finish();
             }
         });
         Cancel.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +179,7 @@ public class CartCheckActivity extends AppCompatActivity {
     private static JSONObject createDeliveryRequestData() {
         try {
             JSONObject requestData = new JSONObject();
-            requestData.put("external_delivery_id", "706");
+            requestData.put("external_delivery_id", "71206");
             requestData.put("pickup_address", "1565 Charleston Rd, Mountain View, CA 94043");
             requestData.put("pickup_business_name", "Seattle City Hall");
             requestData.put("pickup_phone_number", "+12065551212");
@@ -224,14 +225,14 @@ public class CartCheckActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         // Handle the successful response
                         Log.d("API", "Delivery created successfully!");
-                        Log.d("API", "" + response.toString());
+//                        Log.d("API", "" + response.toString());
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Handle errors
-                        Log.d("API", "Error creating delivery: " + error.toString());
+                        Log.d("API", "Error creating delivery: " );
                     }
                 }) {
             @Override

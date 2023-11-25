@@ -181,14 +181,12 @@ public class MainActivity extends AppCompatActivity {
         CustomCartContainer = (RelativeLayout) findViewById(R.id.CustomCartIconContainer);
         PageTitle = (TextView) findViewById(R.id.PageTitle);
         CustomCartNumber = (TextView) findViewById(R.id.CustomCartNumber);
-
         PageTitle.setText("Grocify");
         setNumberOfItemsInCartIcon();
-
         CustomCartContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String externalDeliveryId = "79233";
+                String externalDeliveryId = "1219";
                 String pickupAddress = "600 4th Ave, Seattle, WA 98101";
                 String pickupBusinessName = "Seattle City Hall";
                 String pickupPhoneNumber = "+12065551212";
@@ -230,7 +228,8 @@ public class MainActivity extends AppCompatActivity {
                         currency,
                         contactlessDropoff,
                         actionIfUndeliverable
-                );                createDelivery(Config.getJWT(), createDeliveryRequest);
+                );
+                createDelivery(Config.getJWT(), createDeliveryRequest);
 //                startActivity(new Intent(MainActivity.this, CartActivity.class));
             }
         });
@@ -263,10 +262,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    DoorDashApiResponse apiResponse = new Gson().fromJson(response.body().toString(), DoorDashApiResponse.class);
-                    String externalDeliveryId = apiResponse.getDeliveryStatus();
-                    Log.e("Error Response Body", "id"+ externalDeliveryId);
-//
+                    Log.e("Response Body", "body "+ response.errorBody());
                 } else {
                     try {
                         String errorBodyString = response.errorBody().string();
