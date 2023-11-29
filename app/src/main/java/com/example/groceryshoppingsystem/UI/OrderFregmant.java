@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,35 +76,54 @@ public class OrderFregmant extends Fragment {
 
         DatabaseReference roott= FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp");
         DatabaseReference x = roott.child("order").child(CurrentUser);
-        ValueEventListener valueEventListener1 =new ValueEventListener() {
+        x.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        if (dataSnapshot.hasChild("status")) {
-                            String Date = dataSnapshot.child("Date").getValue().toString();
-                            int nums = ((int) (dataSnapshot.child("orderproducts").getChildrenCount()));
-                            String totalPrice = dataSnapshot.child("totalPrice").getValue().toString();
-                            String OrderCheck = dataSnapshot.child("IsChecked").getValue().toString();
-                            String status = dataSnapshot.child("status").getValue().toString();
-                            String products = "";
-                            for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
-                                products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " $\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
-                            }
+                    orderItemList.clear();
 
-                            orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums),  totalPrice + " $", "   " + products, OrderCheck, status));
-                        }
+                        Log.d("datasnap", snapshot + " ");
+
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Log.d("datasnap_details", dataSnapshot + " ");
+
+                            if (dataSnapshot.hasChild("status") && dataSnapshot.hasChild("token")) {
+                                String status = dataSnapshot.child("status").getValue(String.class);
+                                String token = dataSnapshot.child("token").getValue(String.class);
+
+                                    String Date = dataSnapshot.child("Date").getValue(String.class);
+                                    int nums = (int) dataSnapshot.child("orderproducts").getChildrenCount();
+                                    String totalPrice = dataSnapshot.child("totalPrice").getValue(String.class);
+                                    String OrderCheck = dataSnapshot.child("IsChecked").getValue(String.class);
+                                    String phonenumber = dataSnapshot.child("phonenumber").getValue(String.class);
+                                    String address = dataSnapshot.child("address").getValue(String.class);
+                                    String email = dataSnapshot.child("email").getValue(String.class);
+                                    String name = dataSnapshot.child("name").getValue(String.class);
+                                    String key = dataSnapshot.child("key").getValue(String.class);
+                                    String uid = dataSnapshot.child("uid").getValue(String.class);
+                                    String status_var = dataSnapshot.child("status").getValue(String.class);
+
+                                    String products = "";
+                                    for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
+                                        products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " $\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
+                                    }
+
+                                    orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums), totalPrice + " $", "   " + products, OrderCheck, address, email, phonenumber, name, token, uid, key, status_var));
+                                }
+
+
                     }
-                }
-                else{
+                } else {
                     orderItemList.clear();
                 }
                 adapter.notifyDataSetChanged();
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        };
-        x.addListenerForSingleValueEvent(valueEventListener1);
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("FirebaseError", "Failed to read value.", error.toException());
+            }
+        });
 
         return view;
     }

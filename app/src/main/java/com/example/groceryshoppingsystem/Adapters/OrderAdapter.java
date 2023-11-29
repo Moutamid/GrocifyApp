@@ -58,7 +58,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.orderPrice.setText(model.getOrderPrice());
         holder.orderProducts.setText(model.getOrderProducts());
         holder.OrderCheck.setText(model.getStatus());
-
+//        if (model.getType() == 1) {
+//            holder.OrderCheck.setText("Pending ");
+//        } else if (model.getType() == 2) {
+//            holder.OrderCheck.setText("Confirm");
+//        } else if (model.getType() == 3) {
+//            holder.OrderCheck.setText("Completed");
+//        }
     }
 
     @Override

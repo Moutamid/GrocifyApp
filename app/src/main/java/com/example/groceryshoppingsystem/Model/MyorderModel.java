@@ -21,6 +21,21 @@ String status;
         this.uid = uid;
         this.key = key;
         this.type = type;
+    } public MyorderModel(String orderID, String date, String orderNums, String orderPrice, String orderProducts, String orderCheck, String orderAddress, String orderEmail, String orderPhone, String orderName, String token, String uid, String key, String status) {
+        OrderID = orderID;
+        Date = date;
+        this.orderNums = orderNums;
+        this.orderPrice = orderPrice;
+        this.orderProducts = orderProducts;
+        OrderCheck = orderCheck;
+        this.orderAddress = orderAddress;
+        this.orderEmail = orderEmail;
+        this.orderPhone = orderPhone;
+        this.orderName = orderName;
+        this.token = token;
+        this.uid = uid;
+        this.key = key;
+        this.status = status;
     }
 
     public MyorderModel(String OrderId, String date, String orderNums, String orderPrice, String orderProducts, String OrderCheck, String status) {

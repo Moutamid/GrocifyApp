@@ -198,4 +198,7 @@ public class AddProduct extends AppCompatActivity {
     }
 
 
+    public void backPress(View view) {
+        onBackPressed();
+    }
 }
