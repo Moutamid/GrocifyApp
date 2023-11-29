@@ -62,7 +62,7 @@ public class CartAdapter extends RecyclerView.Adapter  {
         String resource = cartItemModelList.get(position).getProductImage();
         String title = cartItemModelList.get(position).getProducttitle();
         int freeCoupons = cartItemModelList.get(position).getCoupon();
-        int productPrice = cartItemModelList.get(position).getPrice();
+        Float productPrice =Float.parseFloat(cartItemModelList.get(position).getPrice().toString());
         String cuttedprice = String.valueOf(cartItemModelList.get(position).getCuttedprice());
         int offerApplied = cartItemModelList.get(position).getOfferApplied();
         int quantity = cartItemModelList.get(position).getQuantity();
@@ -136,7 +136,7 @@ public class CartAdapter extends RecyclerView.Adapter  {
 
 
 
-        void setItemDetails(String resource, final String title, int freeCouponsNo, final int productPriceText, int quantity, String cutprice, int offerAppliedNo){
+        void setItemDetails(String resource, final String title, int freeCouponsNo, final Float productPriceText, int quantity, String cutprice, int offerAppliedNo){
 
             Picasso.get().load(resource).into(productimage);
             producttitle.setText(title);
@@ -155,8 +155,12 @@ public class CartAdapter extends RecyclerView.Adapter  {
                 freecoupon.setVisibility(View.INVISIBLE);
                 couponApplied.setVisibility(View.INVISIBLE);
             }
-            productprice.setText("Price: "+String.valueOf(productPriceText * quantity )+" PKR");
-            if ( Integer.parseInt(cutprice) >0) {
+            float v = productPriceText * quantity;
+
+            String formattedNumber = String.format("%.2f", v);
+
+            productprice.setText("Price: "+formattedNumber+" $");
+            if ( Float.parseFloat(cutprice) >0) {
                 cuttedprice.setText(cutprice);
                 cuttedprice.setVisibility(View.VISIBLE);
             }
@@ -166,7 +170,9 @@ public class CartAdapter extends RecyclerView.Adapter  {
                 @Override
                 public void onClick(View v) {
                     productQuantity.setText(String.valueOf( Integer.parseInt( productQuantity.getText().toString() )+1  )  );
-                    productprice.setText("Price: "+String.valueOf(productPriceText *Integer.parseInt( productQuantity.getText().toString()) )+" PKR")  ;
+                    float v1 = productPriceText * Integer.parseInt(productQuantity.getText().toString());
+                    String formattedNumber = String.format("%.2f", v1);
+                    productprice.setText("Price: "+String.valueOf(formattedNumber)+" $")  ;
                     root.child("cart").child(CurrentUser).child(title).child("quantity").setValue(productQuantity.getText().toString());
                     countTotalPrice();
 
@@ -178,7 +184,11 @@ public class CartAdapter extends RecyclerView.Adapter  {
                 public void onClick(View v) {
                     if(Integer.valueOf( productQuantity.getText().toString() ) >1) {
                         productQuantity.setText(String.valueOf(Integer.parseInt(productQuantity.getText().toString()) - 1));
-                        productprice.setText("Price: "+String.valueOf(productPriceText * Integer.parseInt(productQuantity.getText().toString()))+" PKR");
+                        float v2 = productPriceText * Integer.parseInt(productQuantity.getText().toString());
+
+                        String formattedNumber = String.format("%.2f", v2);
+
+                        productprice.setText("Price: "+formattedNumber+" $");
                         root.child("cart").child(CurrentUser).child(title).child("quantity").setValue(productQuantity.getText().toString());
                         countTotalPrice();
                     }
@@ -237,25 +247,23 @@ public class CartAdapter extends RecyclerView.Adapter  {
         final String CurrentUser =  FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         ValueEventListener valueEventListener =new ValueEventListener() {
-            int totalpriceVal = 0 ;
+            Float totalpriceVal = Float.valueOf(0);
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.child(CurrentUser).getChildren()) {
                         if (!dataSnapshot.getKey().equals("totalPrice")) {
-
                             String cartItemPrice = dataSnapshot.child("productPrice").getValue(String.class).toString();
                             String quantity = dataSnapshot.child("quantity").getValue(String.class).toString();
-                            totalpriceVal += Integer.parseInt(  cartItemPrice) * Integer.parseInt( quantity );
+                            totalpriceVal += Float.parseFloat(  cartItemPrice) * Integer.parseInt( quantity );
                         }
-
                     }
                     root.child("cart").child(CurrentUser).child("totalPrice").setValue(String.valueOf(totalpriceVal));
-                    mListener.UpdateTotalPrice(String.valueOf(totalpriceVal)+" PKR");
+                    String formattedNumber = String.format("%.2f", totalpriceVal);
+                    mListener.UpdateTotalPrice(String.valueOf(formattedNumber)+" $");
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

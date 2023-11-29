@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import com.example.groceryshoppingsystem.Adapters.AdminOfferAdapter;
 import com.example.groceryshoppingsystem.Adapters.AdminProductAdapter;
@@ -37,14 +38,13 @@ public class ProductsFragment extends Fragment {
     //my variables
     private RecyclerView ProductsRecycler;
     private AdminProductAdapter adapter;
-    private FloatingActionButton ProductsFloatingActionButton;
+    private Button ProductsFloatingActionButton;
     private List<AdminProduct> adminProducts;
     private DatabaseReference mDataBaseRef;
     private ProgressBar bar;
 
 
     public ProductsFragment() {
-        // Required empty public constructor
     }
 
     public static ProductsFragment newInstance(String param1, String param2) {
@@ -70,7 +70,7 @@ public class ProductsFragment extends Fragment {
         view=inflater.inflate(R.layout.fragment_products, container, false);
 
         ProductsRecycler= (RecyclerView)view.findViewById(R.id.ProductsRecycler);
-        ProductsFloatingActionButton= (FloatingActionButton)view.findViewById(R.id.ProductsFloatingBtnId);
+        ProductsFloatingActionButton= (Button)view.findViewById(R.id.ProductsFloatingBtnId);
 
         bar = view.findViewById(R.id.productProgressBar);
 

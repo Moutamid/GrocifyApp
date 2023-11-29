@@ -87,10 +87,10 @@ public class OrderFregmant extends Fragment {
                             String status = dataSnapshot.child("status").getValue().toString();
                             String products = "";
                             for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
-                                products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " PKR\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
+                                products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " $\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
                             }
 
-                            orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums),  totalPrice + " PKR", "   " + products, OrderCheck, status));
+                            orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums),  totalPrice + " $", "   " + products, OrderCheck, status));
                         }
                     }
                 }

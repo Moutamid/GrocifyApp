@@ -77,36 +77,41 @@ public class OrderPendingFregmant extends Fragment {
         OrderItemRecyclerView.setAdapter(adapter);
         DatabaseReference roott = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp");
         DatabaseReference x = roott.child("order");
-        ValueEventListener valueEventListener1 = new ValueEventListener() {
+
+        x.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     orderItemList.clear();
 
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
-                            Log.d("datasnap", dataSnapshot + " ");
+                        Log.d("datasnap", snapshot1 + " ");
 
-                            if (dataSnapshot.hasChild("status")&&dataSnapshot.hasChild("token")&&dataSnapshot.hasChild("uid")) {
-                                if (dataSnapshot.child("status").getValue().toString().equals("pending")) {
-                                    Log.d("datasnap", dataSnapshot + " ");
-                                    String Date = dataSnapshot.child("Date").getValue().toString();
-                                    int nums = ((int) (dataSnapshot.child("orderproducts").getChildrenCount()));
-                                    String totalPrice = dataSnapshot.child("totalPrice").getValue().toString();
-                                    String OrderCheck = dataSnapshot.child("IsChecked").getValue().toString();
-                                    String phonenumber = dataSnapshot.child("phonenumber").getValue().toString();
-                                    String address = dataSnapshot.child("address").getValue().toString();
-                                    String email = dataSnapshot.child("email").getValue().toString();
-                                    String name = dataSnapshot.child("name").getValue().toString();
-                                    String token = dataSnapshot.child("token").getValue().toString();
-                                    String key = dataSnapshot.child("key").getValue().toString();
-                                    String uid = dataSnapshot.child("uid").getValue().toString();
-//                                    String token="aba";
+                        for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
+                            Log.d("datasnap_details", dataSnapshot + " ");
+
+                            if (dataSnapshot.hasChild("status") && dataSnapshot.hasChild("token")) {
+                                String status = dataSnapshot.child("status").getValue(String.class);
+                                String token = dataSnapshot.child("token").getValue(String.class);
+
+                                if (status != null && status.equals("pending")) {
+                                    String Date = dataSnapshot.child("Date").getValue(String.class);
+                                    int nums = (int) dataSnapshot.child("orderproducts").getChildrenCount();
+                                    String totalPrice = dataSnapshot.child("totalPrice").getValue(String.class);
+                                    String OrderCheck = dataSnapshot.child("IsChecked").getValue(String.class);
+                                    String phonenumber = dataSnapshot.child("phonenumber").getValue(String.class);
+                                    String address = dataSnapshot.child("address").getValue(String.class);
+                                    String email = dataSnapshot.child("email").getValue(String.class);
+                                    String name = dataSnapshot.child("name").getValue(String.class);
+                                    String key = dataSnapshot.child("key").getValue(String.class);
+                                    String uid = dataSnapshot.child("uid").getValue(String.class);
+
                                     String products = "";
                                     for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
-                                        products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " PKR\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
+                                        products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " $\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
                                     }
-                                    orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums), totalPrice + " PKR", "   " + products, OrderCheck, address, email, phonenumber, name, token, uid, key, 1));
+
+                                    orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums), totalPrice + " $", "   " + products, OrderCheck, address, email, phonenumber, name, token, uid, key, 1));
                                 }
                             }
                         }
@@ -119,9 +124,9 @@ public class OrderPendingFregmant extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("FirebaseError", "Failed to read value.", error.toException());
             }
-        };
-        x.addListenerForSingleValueEvent(valueEventListener1);
+        });
 
         return view;
     }

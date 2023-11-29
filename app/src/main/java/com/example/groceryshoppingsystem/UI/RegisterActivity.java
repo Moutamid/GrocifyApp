@@ -267,7 +267,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().signOut();
                             progressBar1.setVisibility(View.GONE);
-                            Toast.makeText(RegisterActivity.this, "Successfully Registered. Please verify email before login", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Successfully Registered", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(RegisterActivity.this, loginActivity.class);
                             startActivity(intent);
                             finish();

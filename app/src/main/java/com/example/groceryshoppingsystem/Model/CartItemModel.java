@@ -7,14 +7,14 @@ public class CartItemModel {
     //Cart Item
     private String productImage;
     private int coupon;
-    private int price;
+    private Float price;
     private int cuttedprice;
     private int quantity;
     private int offerApplied;
     private int couponApplied;
     private String producttitle;
     private boolean CartItemDelete = false;
-    public CartItemModel(int type, String productImage , String producttitle, int coupon, int price, int cuttedprice, int quantity, int offerApplied, int couponApplied ) {
+    public CartItemModel(int type, String productImage , String producttitle, int coupon, Float price, int cuttedprice, int quantity, int offerApplied, int couponApplied ) {
         this.type = type;
         this.productImage = productImage;
         this.coupon = coupon;
@@ -59,11 +59,11 @@ public class CartItemModel {
         this.coupon = coupon;
     }
 
-    public int getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

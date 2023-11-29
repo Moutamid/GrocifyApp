@@ -66,7 +66,6 @@ public class ProductInfoActivity extends AppCompatActivity {
         ProductNExpiryDate = getIntent().getStringExtra("Product ExpiryDate");
         ProductIsFavorite = getIntent().getStringExtra("Product IsFavorite");
         IsOffered = getIntent().getStringExtra("Is Offered");
-
         // define xml data
         DefineXmlViews();
 
@@ -137,7 +136,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                     DatabaseReference x = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp").child("favourites").child(UserId).child(ProductName);
                     x.child("checked").setValue(true);
                     x.child("productimage").setValue(ProductImage);
-                    x.child("productprice").setValue("" + ProductPrice + " PKR");
+                    x.child("productprice").setValue("" + ProductPrice + " $");
                     x.child("producttitle").setValue(ProductName);
                     x.child("productDetails").setValue(details.getText().toString());
 
@@ -171,13 +170,9 @@ public class ProductInfoActivity extends AppCompatActivity {
                 hashMap.put("productImage", ProductImage);
                 hashMap.put("productPrice", ProductPrice);
                 hashMap.put("quantity", "1");
-                int PriceAfterOffer;
-                if (IsOffered.equalsIgnoreCase("yes"))
-                    PriceAfterOffer = (int) ((Integer.valueOf(ProductPrice)) - (Integer.valueOf(ProductPrice) * 0.3));
-                else PriceAfterOffer = (int) (Integer.valueOf(ProductPrice));
-
+                Float PriceAfterOffer;
+               PriceAfterOffer = (Float) (Float.valueOf(ProductPrice));
                 hashMap.put("productPrice", String.valueOf(PriceAfterOffer));
-
                 DatabaseReference x = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp").child("cart").child(UserId);
                 x.child(ProductName).setValue(hashMap);
 
@@ -224,7 +219,7 @@ public class ProductInfoActivity extends AppCompatActivity {
     private void setProductData() {
         Picasso.get().load(ProductImage).into(PImage);
         PName.setText(ProductName);
-        PPrice.setText("" + ProductPrice + " PKR");
+        PPrice.setText("" + ProductPrice + " $");
         details.setText("" + ProductNExpiryDate);
        if (ProductIsFavorite.equalsIgnoreCase("true"))
             PIsFav.setImageResource(R.drawable.ic_baseline_favorite_24);

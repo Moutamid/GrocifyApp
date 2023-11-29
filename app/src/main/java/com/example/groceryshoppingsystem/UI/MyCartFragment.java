@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.groceryshoppingsystem.Adapters.CartAdapter;
 import com.example.groceryshoppingsystem.Model.CartItemModel;
 import com.example.groceryshoppingsystem.R;
@@ -38,7 +40,7 @@ public class MyCartFragment extends Fragment {
     private FirebaseAuth mAuth;
     private String CurrentUser;
     private DatabaseReference m , root;
-    public  int totalpriceVal =0;
+    public  float totalpriceVal =0;
 
 
     public MyCartFragment() {
@@ -104,7 +106,7 @@ public class MyCartFragment extends Fragment {
                             String cartItemImage = dataSnapshot.child("productImage").getValue(String.class).toString();
                             String cartItemPrice = dataSnapshot.child("productPrice").getValue(String.class).toString();
                             String quantity = dataSnapshot.child("quantity").getValue(String.class).toString();
-                            cartItemModelList.add(new CartItemModel(0, cartItemImage, cartItemTitle, 0, Integer.parseInt(cartItemPrice), 0, Integer.parseInt(quantity), 0, 0));
+                            cartItemModelList.add(new CartItemModel(0, cartItemImage, cartItemTitle, 0, Float.parseFloat(cartItemPrice), 0, Integer.parseInt(quantity), 0, 0));
                         }
 
                     }
@@ -143,6 +145,7 @@ public class MyCartFragment extends Fragment {
         cartAdapter.setOnItemClickListener(new CartAdapter.OnItemClickListener(){
             @Override
             public void UpdateTotalPrice(String str) {
+
                 totalprice.setText(str);
             }
 
@@ -197,12 +200,13 @@ public class MyCartFragment extends Fragment {
 
                             String cartItemPrice = dataSnapshot.child("productPrice").getValue(String.class).toString();
                             String quantity = dataSnapshot.child("quantity").getValue(String.class).toString();
-                            totalpriceVal += Integer.parseInt(  cartItemPrice) * Integer.parseInt( quantity );
+                            totalpriceVal += Float.parseFloat(  cartItemPrice) * Float.parseFloat(quantity );
                         }
 
                     }
                     root.child("cart").child(CurrentUser).child("totalPrice").setValue(String.valueOf(totalpriceVal));
-                    totalprice.setText(String.valueOf(totalpriceVal)+" PKR");
+                    String formattedNumber = String.format("%.2f", totalpriceVal);
+                    totalprice.setText(String.valueOf(formattedNumber)+" $");
                     cartAdapter.notifyDataSetChanged();
                 }
             }

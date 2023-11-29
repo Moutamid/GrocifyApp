@@ -45,7 +45,7 @@
 
         android:layout_toRightOf="@id/PrImage"
         android:fontFamily="@font/lexend_medium"
-        android:text="200 PKR"
+        android:text="200 $"
         android:textColor="#5E5757"
         android:textSize="11dp" />
 

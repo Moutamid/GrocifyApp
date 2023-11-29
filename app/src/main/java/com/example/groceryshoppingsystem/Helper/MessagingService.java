@@ -15,8 +15,10 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
+import com.example.groceryshoppingsystem.AdminPanel.AdminActivity;
 import com.example.groceryshoppingsystem.R;
 import com.example.groceryshoppingsystem.UI.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -35,9 +37,16 @@ public class MessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(final RemoteMessage remoteMessage) {
+        Intent intent;
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("admin@gmail.com")) {
+            intent = new Intent(MessagingService.this, AdminActivity.class);
+        }
+        else
+        {
+            intent = new Intent(MessagingService.this, MainActivity.class);
 
-        final Intent intent = new Intent(MessagingService.this, MainActivity.class);
-        intent.putExtra("type",remoteMessage.getData().get("type"));
+        }
+        intent.putExtra("type", remoteMessage.getData().get("type"));
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         int notificationID = new Random().nextInt(3000);
 

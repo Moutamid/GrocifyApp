@@ -100,9 +100,9 @@ public class OrderCompleteFregmant extends Fragment {
 //                                    String token="aba";
                                     String products = "";
                                     for (DataSnapshot data : dataSnapshot.child("orderproducts").getChildren()) {
-                                        products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " PKR\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
+                                        products += "        " + data.getKey() + "\n                 Price: " + data.child("productPrice").getValue().toString() + " $\n                Quantity: " + data.child("quantity").getValue().toString() + "\n";
                                     }
-                                    orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums), totalPrice + " PKR", "   " + products, OrderCheck, address, email, phonenumber, name, token, uid, key, 4));
+                                    orderItemList.add(new MyorderModel(dataSnapshot.getKey(), "" + Date, String.valueOf(nums), totalPrice + " $", "   " + products, OrderCheck, address, email, phonenumber, name, token, uid, key, 4));
                                 }
                             }
                         }

@@ -10,7 +10,7 @@ public interface
 
 DoorDashService {
     @POST("drive/v2/deliveries")
-    Call<Void> createDelivery(@Header("Authorization") String jwt, @Body CreateDeliveryRequest request);
+    Call<CreateDeliveryRequest> createDelivery(@Header("Authorization") String jwt, @Body CreateDeliveryRequest request);
 
     @GET("drive/v2/deliveries/{external_delivery_id}")
     Call<String> getDelivery(

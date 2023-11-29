@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -53,7 +54,7 @@ public class CartCheckActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser CurrentUsr;
     private String UserId;
-
+    String token_admin;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,18 +76,32 @@ public class CartCheckActivity extends AppCompatActivity {
         savedamount = findViewById(R.id.SavedAmount);
         getUserProfileData();
         editTextProvince.setVisibility(View.GONE);
+        DatabaseReference z = FirebaseDatabase.getInstance("https://grocery-delivery-app-22f4e-default-rtdb.firebaseio.com/").getReference().child("GrocaryApp").child("Admin");
+        z.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Get the value of the "token" field
+                token_admin = dataSnapshot.child("token").getValue().toString();
 
+                // Use the token as needed
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("FirebaseError", "Failed to read value.", databaseError.toException());
+            }
+        });
         Done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject deliveryData = createDeliveryRequestData();
+//                JSONObject deliveryData = createDeliveryRequestData();
 
                 // Create HTTP request
-                sendDeliveryRequest(CartCheckActivity.this, Config.getJWT(), deliveryData);
+//                sendDeliveryRequest(CartCheckActivity.this, Config.getJWT(), deliveryData);
 
-//                savedDate();
-//                CartActivity.fa.finish();
-//                finish();
+                savedDate();
+                CartActivity.fa.finish();
+                finish();
             }
         });
         Cancel.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +179,7 @@ public class CartCheckActivity extends AppCompatActivity {
                         root.child("order").child(CurrentUser).child(key).child("key").setValue(key);
                         Toast.makeText(getApplicationContext(), "Order is successfully placed", Toast.LENGTH_LONG).show();
                         root.child("cart").child(CurrentUser).removeValue();
+                        sendFCMPush(token_admin);
                     }
 
                     @Override
@@ -279,6 +295,53 @@ public class CartCheckActivity extends AppCompatActivity {
 
     public void backPress(View view) {
         onBackPressed();
+    }
+
+    private void sendFCMPush(String token) {
+        JSONObject notification = new JSONObject();
+        JSONObject notifcationBody = new JSONObject();
+
+        try {
+            notifcationBody.put("title", "Order Alert");
+            notifcationBody.put("message", "You got a new Order");
+            notification.put("to", token); // Use the FCM token of the recipient device
+            notification.put("data", notifcationBody);
+
+            Log.e("DATAAAAAA", notification.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                Config.NOTIFICATIONAPIURL,
+                notification,
+                response -> {
+                    Log.e("True", response + "");
+                    Log.d("Response", response.toString());
+                },
+                error -> {
+                    Log.e("False", error + "");
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "key=" + Config.SERVER_KEY);
+                params.put("Content-Type", "application/json");
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(CartCheckActivity.this);
+        int socketTimeout = 1000 * 60; // 60 seconds
+        RetryPolicy policy = new DefaultRetryPolicy(
+                socketTimeout,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        );
+        jsObjRequest.setRetryPolicy(policy);
+        requestQueue.add(jsObjRequest);
     }
 
 }

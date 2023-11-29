@@ -60,7 +60,7 @@ public class GridproductAdapter extends RecyclerView.Adapter<GridproductAdapter.
         HorizontalProductModel resturantModel = horizontalProductModelList.get(position);
         Picasso.get().load(horizontalProductModelList.get(position).getProductimage()).into(productImage);
         producttitle.setText(horizontalProductModelList.get(position).getProducttitle());
-        productprice.setText("Rs. " + horizontalProductModelList.get(position).getProductprice());
+        productprice.setText( horizontalProductModelList.get(position).getProductprice()+"$");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
