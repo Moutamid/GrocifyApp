@@ -1,6 +1,9 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+
+}
 //apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
 android {
@@ -91,6 +94,7 @@ dependencies {
 //    implementation 'org.apache.httpcomponents:httpclient:4.5'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'androidx.work:work-runtime:2.7.1'
 
 }
 

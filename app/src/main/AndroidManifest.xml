@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.groceryshoppingsystem" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -7,6 +8,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
     <application
         android:name=".UI.OfflineCapability"
@@ -17,21 +23,15 @@
         android:roundIcon="@mipmap/appicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true" >
-        <activity
-            android:name=".UI.Dummy"
-            android:exported="false" />
-        <activity
+        android:usesCleartextTraffic="true"
+        tools:targetApi="n">
+          <activity
             android:name=".AdminPanel.OrderDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".UI.FeedbackActivity"
             android:exported="false" />
-        <activity
-            android:name=".UI.ScanQRCodeActivity"
-            android:parentActivityName=".UI.OrderActivity"
-            android:screenOrientation="portrait" />
-        <activity
+          <activity
             android:name=".UI.CartCheckActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -2,6 +2,8 @@ package com.example.groceryshoppingsystem.AdminPanel;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.groceryshoppingsystem.R;
@@ -42,6 +45,8 @@ public class AdminActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private TextView FragmentTitle;
     private FirebaseAuth mAuth;
+    final int PERMISSION_REQUEST_CODE =112;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,11 @@ public class AdminActivity extends AppCompatActivity {
         FragmentTitle = (TextView) findViewById(R.id.FragmentTitle);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.Bottom_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(naveListener);
+        if (Build.VERSION.SDK_INT > 32) {
+            if (!shouldShowRequestPermissionRationale("112")){
+                getNotificationPermission();
+            }
+        }
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(@NonNull Task<String> task) {
@@ -132,5 +142,35 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+
+    public void getNotificationPermission(){
+        try {
+            if (Build.VERSION.SDK_INT > 32) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                        PERMISSION_REQUEST_CODE);
+            }
+        }catch (Exception e){
+
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // allow
+
+                }  else {
+                    Toast.makeText(this, "Permisssion denied", Toast.LENGTH_SHORT).show();                }
+                return;
+
+        }
+
+    }
 
 }
