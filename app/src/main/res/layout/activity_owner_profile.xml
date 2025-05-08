@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:id="@+id/img_lyt"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="@dimen/_20sdp">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/defualt_image"
+                        app:civ_border_color="@color/black"
+                        app:civ_border_width="2dp" />
+
+                    <ImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/defualt_image"
+
+                        android:visibility="gone" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/card_bg"
+                    android:backgroundTint="#80F1EDEE"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:hint="@string/name"
+                        android:padding="12dp"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/textColor"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:padding="12dp"
+                        android:textColor="#615454"
+
+                        android:textSize="12dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="25dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:padding="12dp"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/textColor"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:padding="12dp"
+                        android:textColor="#6E6B6B"
+                        android:textSize="12dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="12dp"
+
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/card_bg"
+                    android:backgroundTint="#80F1EDEE"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:hint="@string/email"
+                        android:padding="12dp"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/textColor"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:padding="12dp"
+                        android:textColor="#6E6B6B"
+                        android:textSize="12dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/card_bg"
+                    android:backgroundTint="#80F1EDEE"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:hint="@string/phone_number"
+                        android:padding="12dp"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/textColor"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint=""
+                        android:padding="12dp"
+                        android:textColor="#6E6B6B"
+                        android:textSize="12dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="25dp"
+                    android:background="@drawable/card_bg"
+                    android:backgroundTint="#80F1EDEE"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:hint="@string/description"
+                        android:padding="12dp"
+                        android:textColor="@color/textColor"
+                        android:textColorHint="@color/textColor"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/about_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp"
+                        android:textColor="#6E6B6B"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/poppins_regular"
+                        />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/order"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="30dp"
+                    android:background="@drawable/btn_bg"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:gravity="center"
+                    android:text="My Orders"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@drawable/btn_bg"
+                    android:backgroundTint="#F44336"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:gravity="center"
+
+                    android:text="@string/logout"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+</ScrollView>

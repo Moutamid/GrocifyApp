@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RadioGroup
+        android:id="@+id/radioGroupStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OUVERT" />
+
+        <RadioButton
+            android:id="@+id/radioClosed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FERMÉ" />
+
+        <RadioButton
+            android:id="@+id/radioOnDuty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DE GARDE" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSubmitStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+</LinearLayout>

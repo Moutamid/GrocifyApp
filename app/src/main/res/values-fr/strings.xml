@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">Pharmacie</string>
+    <string name="Open">Ouvrir</string>
+    <string name="Close">Fermer</string>
+    <string name="logout">Déconnexion</string>
+    <string name="home">Accueil</string>
+    <string name="profile">Profil</string>
+    <string name="favorites">Favoris</string>
+    <string name="cart">Médicaments</string>
+    <string name="my_orders">Commandes</string>
+    <string name="Gmail_web_client_id">467496904796-qnkcblf9s7tia25bmrgp50ed9a0uqfnf.apps.googleusercontent.com</string>
+     <string-array name="productstypes">
+        <item>Fruits</item>
+        <item>Légumes</item>
+        <item>Viandes</item>
+        <item>Tests</item>
+    </string-array>
+
+    <!-- TODO: Supprimer ou modifier ce texte d'espace réservé -->
+    <string name="hello_blank_fragment">Bonjour fragment vide</string>
+    <string name="add_new_category">Ajouter une nouvelle catégorie</string>
+    <string name="choose_image">Choisir une image</string>
+    <string name="enter_category_name">Entrer le nom de la catégorie</string>
+    <string name="add_category">Ajouter une catégorie</string>
+    <string name="add_new_medicine">Ajouter un nouveau médicament</string>
+    <string name="enter_product_name">Entrer le nom du produit</string>
+    <string name="enter_description">Entrer la description</string>
+    <string name="description">Description</string>
+    <string name="enter_price_in_dollars">Entrer le prix en dollars</string>
+    <string name="enter_quantity">Entrer la quantité</string>
+    <string name="select_any_category">Sélectionner une catégorie</string>
+    <string name="add_product">Ajouter un produit</string>
+    <string name="categories">Catégories</string>
+    <string name="edit_category">Modifier la catégorie</string>
+    <string name="edit_product">Modifier le produit</string>
+    <string name="edit_and_save">Modifier et enregistrer</string>
+    <string name="forgot_password">Mot de passe oublié</string>
+    <string name="email">E-mail</string>
+    <string name="enter_email">Entrer l\'e-mail</string>
+    <string name="send_link">Envoyer le lien</string>
+    <string name="login">Connexion</string>
+    <string name="password">Mot de passe</string>
+    <string name="enter_password">Entrer le mot de passe</string>
+    <string name="forgot_your_password">Mot de passe oublié ?</string>
+    <string name="signup_as_pharmacy_owner">S\'inscrire en tant que propriétaire de pharmacie</string>
+    <string name="signup_to_browse_pharmacies">S\'inscrire pour parcourir les pharmacies</string>
+    <string name="about">À propos</string>
+    <string name="all_medicines">Tous les médicaments</string>
+    <string name="whatsapp_us">WhatsApp Nous</string>
+    <string name="visit">Visiter</string>
+    <string name="category">Catégorie</string>
+    <string name="price">Prix</string>
+    <string name="quantity">Quantité</string>
+    <string name="sign_up">Sinscrire</string>
+    <string name="enter_full_name">Entrer le nom complet</string>
+    <string name="enter_confirm_password">Entrer la confirmation du mot de passe</string>
+    <string name="enter_phone_number">Entrer le numéro de téléphone</string>
+    <string name="register">S\'inscrire</string>
+    <string name="already_have_an_account">Vous avez déjà un compte ?</string>
+    <string name="signup">S\'inscrire</string>
+    <string name="enter_whatsapp_number">Entrer le numéro WhatsApp</string>
+    <string name="enter_latitude">Entrer la latitude</string>
+    <string name="enter_longitude">Entrer la longitude</string>
+    <string name="bank_details">Détails bancaires</string>
+    <string name="payment">Paiement</string>
+    <string name="account_holder_testing_user">Titulaire du compte : Utilisateur test</string>
+    <string name="bank_name_testing_bank">Nom de la banque : Banque test</string>
+    <string name="iban_de2032123456789">IBAN : DE2032123456789</string>
+    <string name="bic_deu098765">BIC : DEU098765</string>
+    <string name="upload_image_proof">Télécharger une preuve d\'image</string>
+    <string name="select_image">Sélectionner une image</string>
+    <string name="pay_now">Payer maintenant</string>
+    <string name="find_pharmacies_fast">Trouvez des pharmacies!</string>
+    <string name="please_wait">Veuillez patienter</string>
+    <string name="search_medicines">Rechercher une pharmacie</string>
+    <string name="find_the_right_medicine">Trouvez le bon médicament</string>
+    <string name="add_new_product">Ajouter un nouveau produit</string>
+    <string name="search_by_pharmacy_name">Rechercher par nom de pharmacie</string>
+    <string name="select_your_payment_method">Sélectionnez votre méthode de paiement</string>
+    <string name="pay_manually">Payer manuellement</string>
+    <string name="rate_this_pharmacy">Évaluer cette pharmacie</string>
+    <string name="submit_rating">Soumettre l\'évaluation</string>
+    <string name="my_profile">Mon profil</string>
+    <string name="name">Nom</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="access_a_complete_medicine_database">Accédez à une base de données complète de médicaments</string>
+    <string name="browse_and_manage_medicines_easily">Parcourez et gérez facilement les médicaments</string>
+    <string name="find_the_right_medicine_with_detailed_information">Trouvez le bon médicament avec des informations détaillées.</string>
+    <string name="support_medical_content">Soutenir le contenu médical</string>
+    <string name="help_keep_medical_data_updated_and_accessible_for_everyone">Aidez à maintenir les données médicales à jour et accessibles pour tous.</string>
+    <string name="choose_your_subscription_plan">Choisissez votre plan d\'abonnement</string>
+    <string name="annual_plan">Plan annuel</string>
+    <string name="_130_year">130€/year</string>
+    <string name="unlimited_access_to_all_medicines_and_updates">Accès illimité à tous les médicaments et mises à jour.</string>
+    <string name="_6_months_plan">Plan de 6 mois</string>
+    <string name="flexible_plan_for_6_months_renew_for_another_6_month_after_the_end_of_the_period_for_50">Plan flexible de 6 mois. Renouvelez pour 6 mois supplémentaires après la période pour 50€.</string>
+    <string name="commitment_free_and_flexibility_with_a_monthly_plan_renew_again_for_another_3_months_for_60">Sans engagement et flexible avec un plan mensuel. Renouvelez pour 3 mois supplémentaires pour 60€.</string>
+    <string name="best">Meilleur</string>
+    <string name="_3_months_plan">Plan de 3 mois</string>
+    <string name="cancel_any_time">Annulez à tout moment</string>
+    <string name="we_prioritize_your_security_enjoy_a_seamless_and_secure_payment_process">Nous priorisons votre sécurité. Profitez d\'un processus de paiement fluide et sécurisé.</string>
+    <string name="start_browsing_medicines">Commencez à parcourir les médicaments</string>
+    <string name="get_address">Obtenir l\'adresse</string>
+    <string name="enter_location">Entrer l\'emplacement</string>
+    <string name="write_something_about_pharmacy">Écrivez quelque chose sur la pharmacie</string>
+    <string name="enter_price_in_FCFA">Entrez le prix en FCFA</string>
+    <string name="enter_price_in_GNF">Entrez le prix en GNF</string>
+    <string name="price_in_gnf">Prix en GNF</string>
+    <string name="pharmacy_status">Statut de la pharmacie</string>
+    <string name="status_updated_to">"Statut mis à jour : "</string>
+    <string name="failed_to_update_status">Échec de la mise à jour du statut</string>
+    <string name="status">Statut</string>
+
+</resources>

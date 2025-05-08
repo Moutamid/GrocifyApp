@@ -34,7 +34,7 @@
                 android:layout_marginTop="17dp"
                 android:fontFamily="@font/lexend_semi_bold"
                 android:gravity="left"
-                android:text="Edit product"
+                android:text="@string/edit_product"
                 android:textColor="#000"
                 android:textSize="30dp" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
-            android:text="Choose Image"
+            android:text="@string/choose_image"
             android:textAllCaps="false"
 
             android:background="@color/black"
@@ -79,7 +79,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/edit_bg"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Enter Product Name"
+            android:hint="@string/enter_product_name"
             android:padding="12dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/textColor"
@@ -95,7 +95,7 @@
             android:background="@drawable/edit_bg"
             android:fontFamily="@font/poppins_regular"
             android:gravity="start"
-            android:hint="Enter Discription"
+            android:hint="@string/enter_description"
             android:minHeight="@dimen/_120sdp"
             android:padding="12dp"
             android:textColor="@color/textColor"
@@ -111,13 +111,30 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/edit_bg"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Enter Price"
+            android:hint="@string/enter_price_in_dollars"
+            android:padding="12dp"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/textColor"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/editTextPriceGNF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edit_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/enter_price_in_GNF"
             android:padding="12dp"
             android:inputType="numberDecimal"
 
             android:textColor="@color/textColor"
             android:textColorHint="@color/textColor"
             android:textSize="15dp" />
+
 
         <EditText
             android:id="@+id/editTextProductNumberEdit"
@@ -128,7 +145,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/edit_bg"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Enter Available Amount"
+            android:hint="@string/enter_quantity"
             android:inputType="number"
             android:padding="12dp"
             android:textColor="@color/textColor"
@@ -158,7 +175,7 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/btn_bg"
             android:fontFamily="@font/poppins_regular"
-            android:text="Edit and Save"
+            android:text="@string/edit_and_save"
             android:textAllCaps="false"
             android:layout_marginBottom="20dp"
             android:textColor="@color/white" />

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.loginActivity"
     android:background="@color/white"
+    tools:context=".activities.authentication.LoginActivity"
     tools:ignore="VectorDrawableCompat">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/bgHeader"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:visibility="gone"
         android:background="@drawable/header_login"
+        android:backgroundTint="#1B619F"
         android:elevation="5dp" />
 
     <TextView
@@ -24,9 +23,9 @@
         android:layout_marginTop="30dp"
         android:elevation="5dp"
         android:fontFamily="@font/lexend_extra_bold"
-        android:text="Login"
-        android:textColor="@color/black"
-        android:textSize="50sp" />
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tvLogin"
@@ -39,8 +38,9 @@
         android:text="Login"
         android:textColor="@color/colorWhite"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:transitionName="tvLogin" />
+        android:transitionName="tvLogin"
+
+        android:visibility="gone" />
 
 
     <ScrollView
@@ -51,8 +51,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="130dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="-45dp">
 
 
             <LinearLayout
@@ -69,19 +69,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Email"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/email"
                     android:textColor="@color/app_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/EmailLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/edit_bg"
-                    android:hint="Enter Email"
+                    android:hint="@string/enter_email"
+                    android:textSize="12dp"
                     android:inputType="text"
                     android:paddingLeft="20dp" />
 
@@ -90,22 +91,44 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp"
-                    android:text="Password"
-                    android:textColor="@color/app_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/password"
 
-                <EditText
-                    android:id="@+id/PasswordLogin"
+                    android:textColor="@color/app_color"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/edit_bg"
-                    android:hint="Enter password"
-                    android:inputType="textPassword"
-                    android:paddingLeft="20dp" />
+                    android:background="@drawable/edit_bg">
+
+                    <EditText
+                        android:id="@+id/PasswordLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:hint="@string/enter_password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="20dp"
+                        android:textSize="12dp"
+
+                        android:paddingRight="50dp" />
+
+                    <ImageView
+                        android:id="@+id/ivTogglePassword"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        android:contentDescription="Toggle Password"
+                        android:src="@drawable/blind" />
+                </RelativeLayout>
+
 
                 <TextView
                     android:id="@+id/ForgetPassword"
@@ -117,16 +140,20 @@
                     android:layout_marginRight="15dp"
                     android:elevation="5dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Forgot your password?"
+                    android:text="@string/forgot_your_password"
+                    android:textColor="#E3AA27"
                     android:textSize="11sp" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/Login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@drawable/btn_bg"
-                    android:text="Login"
+                    android:backgroundTint="#1B619F"
+                    android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite" />
 
@@ -139,7 +166,8 @@
                     android:layout_gravity="bottom"
                     android:layout_margin="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -156,18 +184,47 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
-                        android:text="  Register Now"
+                        android:text="  Signup Now"
                         android:textColor="@color/app_color"
                         android:textSize="14dp" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/pharmacy_owner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginEnd="10dp"
+
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_bg"
+                    android:backgroundTint="#E3AA27"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:gravity="center"
+                    android:onClick="pharmacy"
+                    android:textSize="12dp"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/signup_as_pharmacy_owner"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_above="@+id/pharmacy_owner"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/stroke_button"
+                    android:fontFamily="@font/lexend_semi_bold"
+                    android:gravity="center"
+                    android:onClick="login"
+                    android:textSize="12dp"
+
+                    android:text="@string/signup_to_browse_pharmacies"
+                    android:textColor="@color/app_color" />
             </LinearLayout>
-
-
-
-
-
-
 
 
             <ProgressBar
@@ -180,5 +237,6 @@
                 android:visibility="invisible" />
         </RelativeLayout>
     </ScrollView>
+
 
 </RelativeLayout>

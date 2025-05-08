@@ -5,11 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".UI.RegisterActivity">
+    tools:context=".activities.authentication.UserRegisterActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/bgHeader"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/header_login"
+            android:backgroundTint="#1B619F"
+            android:elevation="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:elevation="5dp"
+            android:fontFamily="@font/lexend_extra_bold"
+            android:text="@string/signup"
+            android:textColor="@color/white"
+            android:textSize="50sp" />
 
         <ProgressBar
             android:id="@+id/progressBar1"
@@ -19,6 +38,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="27dp"
             android:visibility="invisible" />
+
         <LinearLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -34,33 +54,28 @@
                 android:layout_marginTop="20dp"
                 android:elevation="5dp"
                 android:fontFamily="@font/lexend_extra_bold"
-                android:text="Sign Up"
-                android:textColor="@color/black"
-                android:textSize="50sp" />
+                android:text="@string/sign_up"
+                android:textColor="@color/app_color"
+                android:textSize="30sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
+            android:layout_marginTop="@dimen/_60sdp"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="210dp"
-                android:layout_height="210dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardUseCompatPadding="true">
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/defualt_image" />
-
-            </androidx.cardview.widget.CardView>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/defualt_image"
+                app:civ_border_color="#E3AA27"
+                app:civ_border_width="2dp" />
 
 
             <EditText
@@ -72,11 +87,11 @@
                 android:layout_marginRight="25dp"
                 android:background="@drawable/edit_bg"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="Enter Full Name"
+                android:hint="@string/enter_full_name"
                 android:padding="12dp"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/textColor"
-                android:textSize="15dp" />
+                  android:textSize="12dp" />
 
 
             <EditText
@@ -88,45 +103,76 @@
                 android:layout_marginRight="25dp"
                 android:background="@drawable/edit_bg"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="Enter Email"
+                android:hint="@string/enter_email"
                 android:inputType="textEmailAddress"
                 android:padding="12dp"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/textColor"
-                android:textSize="15dp" />
+                  android:textSize="12dp" />
 
-            <EditText
-                android:id="@+id/pass1"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/edit_bg"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="Enter Password"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/textColor"
-                android:textSize="15dp" />
+                android:layout_marginRight="25dp">
 
-            <EditText
-                android:id="@+id/pass2"
+                <EditText
+                    android:id="@+id/pass1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edit_bg"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="@string/enter_password"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColor"
+                    android:textSize="12dp" />
+
+
+                <ImageView
+                    android:id="@+id/ivTogglePassword"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:contentDescription="Toggle Password"
+                    android:src="@drawable/blind" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/edit_bg"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="Enter Confirm Password"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/textColor"
-                android:textColorHint="@color/textColor"
-                android:textSize="15dp"
-                android:visibility="visible" />
+                android:layout_marginRight="25dp">
+
+                <EditText
+                    android:id="@+id/pass2"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edit_bg"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="@string/enter_confirm_password"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColor"
+                    android:textSize="12dp" />
+
+
+                <ImageView
+                    android:id="@+id/ivTogglePassword1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:contentDescription="Toggle Password"
+                    android:src="@drawable/blind" />
+            </RelativeLayout>
 
 
             <EditText
@@ -138,26 +184,41 @@
                 android:layout_marginRight="25dp"
                 android:background="@drawable/edit_bg"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="Enter Phone Number"
+                android:hint="@string/enter_phone_number"
                 android:inputType="phone"
                 android:padding="12dp"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/textColor"
-                android:textSize="15dp" />
+                  android:textSize="12dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Country"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold" />
 
+            <Spinner
+                android:id="@+id/spinnerCountries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="@dimen/_8sdp" />
 
-
-
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/finish"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Register"
+                android:text="@string/register"
+
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -167,6 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
+
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -176,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
-                    android:text="Already have an account?"
+                    android:text="@string/already_have_an_account"
                     android:textColor="@color/textColor"
                     android:textSize="14dp" />
 
@@ -185,7 +247,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
-android:onClick="login"                    android:text="Login"
+                    android:onClick="login"
+                    android:text="@string/login"
                     android:textColor="@color/app_color"
                     android:textSize="14dp" />
             </LinearLayout>

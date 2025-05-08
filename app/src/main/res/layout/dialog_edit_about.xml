@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/FragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_toRightOf="@id/img"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="left"
+        android:text="@string/description"
+        android:textColor="@color/app_color"
+        android:textSize="@dimen/_15sdp" />
+
+    <EditText
+        android:id="@+id/editAbout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@android:drawable/edit_text"
+        android:gravity="start"
+        android:hint="Enter about info"
+        android:minHeight="100dp"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Save" />
+    </LinearLayout>
+</LinearLayout>

@@ -7,7 +7,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
-    android:background="#05009172"
+    android:background="@color/white"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="@+id/main_TooBar"
     app:layout_constraintVertical_bias="1.0"
@@ -21,7 +21,9 @@
 
         <include
             android:id="@+id/main_TooBar"
-            layout="@layout/main2_toolbar" />
+            layout="@layout/main2_toolbar"
+            android:visibility="gone"
+           />
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,9 +32,8 @@
             android:layout_below="@+id/main_TooBar"
             app:layout_constraintStart_toStartOf ="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_above="@+id/top_navigation_constraint"
-
             android:id="@+id/Orderframe"/>
+
         <ScrollView
             android:id="@+id/scroll"
             android:layout_width="match_parent"
@@ -51,9 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/toolbar_"
-                    android:elevation="5dp"
-
-                    >
+                    android:elevation="5dp">
 
                     <EditText
                         android:id="@+id/search"
@@ -177,90 +176,17 @@
             </LinearLayout>
         </ScrollView>
 
-        <com.gauravk.bubblenavigation.BubbleNavigationLinearView
-            android:id="@+id/top_navigation_constraint"
+
+        <me.ibrahimsn.lib.SmoothBottomBar
+            android:id="@+id/bottomBar"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
+            app:textColor="@color/app_color"
+            app:iconTint="@color/app_color"
+            app:iconTintActive="@color/app_color"
+            app:indicatorColor="@color/light_gray"
             android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            android:elevation="4dp"
-            android:orientation="horizontal"
-            android:padding="12dp">
-
-            <com.gauravk.bubblenavigation.BubbleToggleView
-                android:id="@+id/item_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:bt_active="true"
-                app:bt_colorActive="@color/app_color"
-                app:bt_colorInactive="#786D6D"
-                app:bt_icon="@drawable/food"
-
-                app:bt_padding="3dp"
-                app:bt_shape="@drawable/transition_background_drawable_restaurant"
-                app:bt_title="Products"
-                app:bt_titlePadding="5dp" />
-
-            <com.gauravk.bubblenavigation.BubbleToggleView
-                android:id="@+id/item_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="1"
-                app:bt_colorActive="@color/app_color"
-                app:bt_colorInactive="#786D6D"
-                app:bt_icon="@drawable/categories"
-                app:bt_padding="3dp"
-                app:bt_shape="@drawable/transition_background_drawable_restaurant"
-                app:bt_title="Categories"
-                app:bt_titlePadding="5dp" />
-
-            <com.gauravk.bubblenavigation.BubbleToggleView
-                android:id="@+id/item_fav"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-android:visibility="gone"
-                app:bt_colorActive="@color/app_color"
-                app:bt_colorInactive="#786D6D"
-                app:bt_icon="@drawable/favrt"
-                app:bt_padding="3dp"
-                app:bt_shape="@drawable/transition_background_drawable_restaurant"
-                app:bt_title="Favourites"
-                app:bt_titlePadding="5dp" />
-
-            <com.gauravk.bubblenavigation.BubbleToggleView
-                android:id="@+id/item_orders"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:bt_colorActive="@color/app_color"
-
-                app:bt_colorInactive="#786D6D"
-                app:bt_icon="@drawable/order"
-                app:bt_padding="3dp"
-                app:bt_shape="@drawable/transition_background_drawable_restaurant"
-                app:bt_title="Orders"
-                app:bt_titlePadding="5dp" />
-
-            <com.gauravk.bubblenavigation.BubbleToggleView
-                android:id="@+id/item_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:bt_colorActive="@color/app_color"
-
-                app:bt_colorInactive="#786D6D"
-                app:bt_icon="@drawable/user"
-                app:bt_padding="3dp"
-                app:bt_shape="@drawable/transition_background_drawable_restaurant"
-                app:bt_title="Profile"
-                app:bt_titlePadding="5dp" />
-
-
-        </com.gauravk.bubblenavigation.BubbleNavigationLinearView>
-
+            app:menu="@menu/main_menu"/>
     </RelativeLayout>
 
 
@@ -271,7 +197,6 @@ android:visibility="gone"
         android:layout_gravity="start"
         android:visibility="gone"
         android:background="#FFF7DA"
-        app:headerLayout="@layout/navigation_drawer_header"
         app:itemIconTint="#fff"
         app:itemTextColor="#A30000"
         app:menu="@menu/main_menu">

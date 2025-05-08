@@ -14,12 +14,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:padding="9dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/adapterCatogryImage"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/defualt_image"/>
 
         <TextView
@@ -27,9 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
+android:layout_gravity="center_vertical"            android:textColor="@android:color/black"
+            android:textSize="13sp"
             android:fontFamily="@font/lexend_semi_bold"
             android:text="Fruits"
             app:layout_constraintEnd_toEndOf="parent"

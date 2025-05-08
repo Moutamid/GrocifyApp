@@ -3,22 +3,27 @@
 
  <item
      android:id="@+id/ProductID"
-     android:title="Products"
+     android:title="Médicaments"
      android:icon="@drawable/food"
      android:iconTint="@color/white"/>
 
     <item
         android:id="@+id/OffersID"
         android:title="Orders"
-
+android:visible="false"
         android:iconTint="@color/white"
         android:icon="@drawable/order"/>
 
 
     <item
         android:id="@+id/SalesMenID"
-        android:title="Categories"
+        android:title="@string/categories"
         android:iconTint="@color/white"
         android:icon="@drawable/categories"/>
+  <item
+        android:id="@+id/Profile"
+        android:title="@string/profile"
+        android:iconTint="@color/white"
+        android:icon="@drawable/my_profike"/>
 
 </menu>

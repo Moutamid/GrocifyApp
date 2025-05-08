@@ -13,38 +13,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-        <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginLeft="17dp"
-            android:onClick="backPress"
-            android:layout_marginTop="29dp"
-
-            android:src="@drawable/baseline_arrow_back_ios_new_24" />
-
-        <TextView
-            android:id="@+id/PageTitle"
-
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/main_border"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="67dp"
-            android:layout_marginTop="17dp"
-            android:fontFamily="@font/lexend_semi_bold"
-            android:gravity="left"
-            android:text=""
-            android:textColor="#000"
-            android:textSize="30dp" />
+            android:orientation="horizontal"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/BackBtn"
+                android:onClick="backPress"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_50sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:onClick="backPress"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/baseline_arrow_back_ios_new_24" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/PageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:gravity="left"
+                android:fontFamily="@font/poppins_semibold"
+                android:text=""
+                android:textColor="#000"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/CategoryRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/PageTitle"
+            android:layout_below="@id/main_border"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="@dimen/_20sdp" />
+            android:layout_marginTop="@dimen/_10sdp" />
 
     </RelativeLayout>
 
@@ -54,7 +72,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/main_menu"
-        app:headerLayout="@layout/navigation_drawer_header"
         android:background="#FFF7DA"
         app:itemIconTint="#fff"
         app:itemTextColor="#A30000" />

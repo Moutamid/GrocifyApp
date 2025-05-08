@@ -25,11 +25,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Add New Product"
+        android:fontFamily="@font/lexend_medium"
+        android:text="@string/add_new_product"
         android:layout_alignParentBottom="true"
         android:textAllCaps="false"
-        android:layout_marginBottom="@dimen/_20sdp"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_6sdp"
         android:textColor="@color/white" />
 
 </RelativeLayout>
